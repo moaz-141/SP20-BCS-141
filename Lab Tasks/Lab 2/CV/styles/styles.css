@@ -1,0 +1,121 @@
+
+body{
+    position: relative;
+    margin: 0;
+}
+
+#image{
+    width: 12rem;
+    border-radius: 6rem;
+    margin: 2.5% 20% 0 2.5% ;
+}
+
+#upperHeaderSkyblue{
+    background-color: #DCEFF9;
+    height: 25rem;
+    transform: rotate(10deg);
+    width: 98%;
+    position: absolute;
+    z-index: -1;
+    top: -12rem;
+}
+
+#upperHeaderPurple{
+    background-color: rgba(128, 0, 128, 0.445);
+    height: 25rem;
+    transform: rotate(17deg);
+    width: 97.5%;
+    position: absolute;
+    z-index: -2;
+    top: -12rem;
+}
+
+#name{
+    display: inline;
+    font-family: Lobster;
+    font-size: 50px;
+    margin-top: 7rem;
+    position: absolute;
+}
+
+#leftBar{
+    height: 94rem;
+    width: 30%;
+    background-color: #DEDCDD;
+    position: absolute;
+    top: 0;
+    z-index: -2;
+    overflow: hidden;
+}
+
+#upperLeftHeaderDarkGray{
+    width: 100%;
+    height: 40rem;
+    background-color: #C3C3C7;
+    position: absolute;
+    top: -7rem;
+    transform: rotate(50deg);
+    left: -10rem;
+}
+
+#leftBarContent{
+position: absolute;
+top: 15rem;
+margin: 10%;
+width: 90%;
+}
+
+#leftBarContent p.content{
+    position: relative;
+    top: -1.8rem;
+    font-size: 17px;
+}
+
+#leftBarContent #contactNo{
+    position: relative;
+    top: -1rem;
+    font-size: 17px;
+}
+
+#leftBarContent h3{
+    margin: 0;
+    position: relative;
+    top: -1rem;
+}
+
+#professionalSkills li{
+    font-size: 17px;
+    padding-top: 1rem;
+}
+
+p, li{
+    font-family: Literata;
+}
+
+.minorDetail{
+    font-size: 14px;
+    color: rgb(117, 117, 117);
+}
+
+#MainContent{
+    width: 70%;
+    float: right;
+}
+
+#MainContent #profile,#technicalSkills,#academicProjects{
+    margin: 10% 5% 5% 5%;
+    text-align: justify;
+    padding-right: 10%;
+}
+
+#MainContent #technicalSkills dt{
+    margin-top: 6px;
+}
+
+#academicProjects .detail{
+    padding-right: 20%;
+}
+
+#MainContent h2{
+    font-family: Asap Condensed;
+}
