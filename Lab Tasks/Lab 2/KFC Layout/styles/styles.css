@@ -1,0 +1,294 @@
+body{
+    padding: 5px 9%;
+}
+
+.black_background{
+    background-color: black;
+    color: #D4D4D4;
+}
+
+.center{
+    align-items: center;
+    justify-content: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.sans-serif{
+    font-family: sans-serif;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+#menu{
+    position: fixed;
+    top: 0;
+    width: 81%;
+    padding: 15px 0;
+    z-index: 1;
+}
+
+#menu #logo, #order{
+    float: left;
+}
+
+#menu #order, #location{
+    background-color: #48413E;
+}
+
+#menu #order {
+    padding: 0 10px;
+    border-radius: 8px;
+    height: 35px;
+    margin: 18px 30px;
+}
+
+#menu #order h6{
+    margin-left: 8px;
+    font-size: 0.8rem;
+    font-family: 'Roboto Condensed';
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#menu #order img {
+    max-height: 26px;
+}
+
+#menu #cart{
+    width: 34px; 
+    height: 34px;   
+    background-image: url(/images/bucket-empty.png);
+    margin: 1.6% 2%;
+    background-size: 100% 100%;
+}
+
+#menu #login, #location, #cart{
+    float: right;
+}
+
+#menu #location{
+    margin: 1% 1%;
+    line-height: 0.25;
+    align-items: center;
+    border-radius: 25px;
+    overflow: hidden;
+    height: 47px;
+    width: 24%;
+}
+
+#menu #location #text h3{
+    font-size: 15px;
+}
+
+#menu #location #text p{
+    font-size: 14px;
+}
+
+#menu #login{
+    background-color: #E4002B;
+    padding:  0.8%;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 1.6%;
+    width: 11.5%;
+}
+
+#menu #login:hover{
+    background-color: #9F001E;
+}
+
+#carousel{
+    margin-top: 8.4%;
+}
+
+#carousel img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+#carousel ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.headingContainer{
+    margin-top: 3%;
+    position: relative;
+}
+
+.heading_h2{
+    display: inline-block;
+    z-index: 1;
+    padding: 0 10px 0 0;
+}
+
+.heading_hr{
+    width: 100%;
+    top: 40%;
+    z-index: -1;
+    position: absolute;
+}
+
+#categories #categoriesContent {
+    justify-content: space-evenly;
+}
+#categories #categoriesContent .categoryItem{
+    height: 165px;
+    width: 163px;
+    border: 4px solid #E4002B;
+    background: #E4002B;
+    text-align: center;
+    border-radius: 6px;
+}
+
+#categories #categoriesContent .categoryItem img{
+    width: 150px;
+}
+#categories #categoriesContent .categoryItem h6{
+    font-size: 1rem;
+    margin: 7px 0;
+}
+
+#categories #categoriesContent .categoryItem:hover{
+    border-color: #D4D4D4;
+}
+
+#topSelling #topSellingContent{
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+#topSelling #topSellingContent .topSellingItem{
+    max-width: 24%;
+    height: 100%;
+    padding: 29px 17px 14px 17px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background-color: #1C1816;
+}
+
+#topSelling #topSellingContent .topSellingItem:hover img{
+    transform: scale(1.07, 1.07)
+}
+
+#topSelling #topSellingContent .topSellingItem img{
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+#topSelling #topSellingContent .topSellingItem h1{
+    font-size: 1.5rem;
+    padding-top: 8px;
+}
+
+#topSelling #topSellingContent .topSellingItem p{
+    font-size: 1rem;
+    padding-top: 8px;
+    margin-bottom: 32px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;   
+}
+
+#topSelling #topSellingContent .topSellingItem .pricingAndBuying{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#topSelling #topSellingContent .topSellingItem h5{
+    font-size: 1.45rem;
+    margin: 0%;
+    font-weight: 800;
+}
+
+#topSelling #topSellingContent .topSellingItem .bucket{
+    width: 120px;
+    height: 35px;
+    background-color: #E4002B;
+    border-radius: 8px;
+    font-size: 1.2rem;
+}
+
+#topSelling #topSellingContent .topSellingItem .bucket:hover{
+    background-color: #9F001E;
+}
+
+footer{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    background: #1C1816;
+    margin-top: 3rem;
+    padding-bottom: 50px;
+}
+
+footer #logosContainer{
+    padding: 48px 0 36px 0;
+    position: relative;
+}
+
+footer #logosContainer img{
+    width: 90px
+}
+
+footer #logosContainer #partition{
+    width: 1px;
+    height: 45px;
+    margin: 0 32px;
+    background: #ffffff;
+}
+
+footer #logosContainer #socialMedia{
+    height: 100%;
+}
+
+footer #logosContainer p{
+    font-size: 1rem;
+    font-weight: 800;
+    margin-top: 0;
+}
+
+footer #logosContainer #icons .fab{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    margin: 0 30px 0 0;
+    color: #1C1816;
+    font-size: 25px;
+    border-radius: 50%;
+    display: flex;
+}
+
+footer #footerContentContainer{
+    padding: 0 12%;
+    justify-content: space-between;
+}
+
+footer #footerContentContainer .content h6{
+    font-size: 1.2rem;
+    line-height: 1.75;
+    margin: 0;
+}
+
+footer #footerContentContainer .content ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    line-height: 2rem;
+}
+
+footer #footerContentContainer .content li:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
