@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KFC | KFC Deals | KFC Menu</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link
+      rel="shortcut icon"
+      href="./images/KFC-Logo-Red.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/631874d0b4.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="black_background">
+    <%- include('./partials/top-menu') %>
+    <div id="carousel" class="pointer">
+      <ul>
+        <li>
+          <img src="./images/carousel_1.png" alt="carousel_1" />
+        </li>
+        <!-- <li>
+          <img src="./images/carousel_2.png" alt="carousel_2" />
+        </li>
+        <li>
+          <img src="./images/carousel_3.png" alt="carousel_3" />
+        </li> -->
+      </ul>
+    </div>
+    <div id="categories" class="center sans-serif">
+      <%- include('./partials/horizontal-category-header', {heading: "Browse Categories"}) %>
+      <div id="categoriesContent" class="flex">
+        <%- include('./partials/category', {title: "Everyday Value", image: "/images/hamburger.png"}) %>
+        <%- include('./partials/category', {title: "Ala Carte & Combos", image: "/images/combos.png"}) %>
+        <%- include('./partials/category', {title: "Signature Boxes", image: "/images/signature_box.png"}) %>
+        <%- include('./partials/category', {title: "Sharing", image: "/images/sharing.png"}) %>
+        <%- include('./partials/category', {title: "Snacks & Beverages", image: "/images/snacks.png"}) %>
+        <%- include('./partials/category', {title: "Midnight", image: "/images/midnight.png"}) %>
+      </div>
+    </div>
+    <div id="topSelling" class="center sans-serif">
+      <div class="headingContainer">
+        <%- include('./partials/horizontal-category-header', {heading: "Top Selling"}) %>
+        <hr class="heading_hr" />
+      </div>
+      <div id="topSellingContent" class="flex">
+        <%- include('./partials/top-selling', {title: "Krunch Burger", image: "/images/crunch_burger.png", details: "Crunchy chicken fillet, spicy mayo, lettuce, sandwiched between a sesame seed bun", price: "220"}) %>
+        <%- include('./partials/top-selling', {title: "Xtreme Duo Box", image: "/images/duo_box.png", details: "The irresistible combo of 2 signature Zingers + 2 pcs Hot & Crispy Chicken + 1 large fries + 2 drinks", price: "1220"}) %>
+        <%- include('./partials/top-selling', {title: "Twister", image: "/images/twister.png", details: "Tender chicken strips, black pepper mayo, diced tomatoes and lettuce- wrapped in a tortilla", price: "600"}) %>
+        <%- include('./partials/top-selling', {title: "Krunch+Fries+Drink", image: "/images/krunch_fries_chicken.png", details: "Krunch + 1 regular Fries + 1 regular Drink. All you need is included", price: "1500"}) %>
+      </div>
+    </div>
+    <%- include('./partials/footer') %>
+  </body>
+</html>

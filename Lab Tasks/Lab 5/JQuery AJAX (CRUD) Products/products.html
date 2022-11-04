@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="./jquery-3.4.1.min.js"></script>
+    <script src="./popper.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <script src="./productsCrud.js"></script>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="./jqstyles.css">
+    <title>Products API</title>
+  </head>
+  <body class="container">
+    <h1>Products API Client</h1>
+
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary btn-lg"
+      data-toggle="modal"
+      data-target="#addModal"
+    >
+      Add Product
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelTitleId"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add New Product</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="title">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="title"
+                id="title"
+                aria-describedby="titleHelp"
+                placeholder="Name of Product"
+              />
+              <small id="titleHelp" class="form-text text-muted"
+                >Enter name of product</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="body">Body</label>
+              <input
+                type="text"
+                class="form-control"
+                name="price"
+                id="price"
+                aria-describedby="bodyHelp"
+                placeholder="Price Details"
+              />
+              <small id="priceHelp" class="form-text text-muted"
+                >Enter price</small
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="color"
+                id="color"
+                aria-describedby="colorHelp"
+                placeholder="Color Details"
+              />
+              <small id="colorHelp" class="form-text text-muted"
+                >Enter Color</small
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="dep"
+                id="dep"
+                aria-describedby="depHelp"
+                placeholder="department Details"
+              />
+              <small id="bodyHelp" class="form-text text-muted"
+                >Enter department</small
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="desc"
+                id="desc"
+                aria-describedby="descHelp"
+                placeholder="Description Details"
+              />
+              <small id="descHelp" class="form-text text-muted"
+                >Enter Description</small
+              >
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="addBtn" class="btn btn-info">Add Product</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="products">Loading ...</div>
+
+    <div
+      class="modal fade"
+      id="updateModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelTitleId"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Update Record</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="updateId" /> <br />
+            <div class="form-group">
+              <label for="title">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="updatetitle"
+                id="updatetitle"
+                aria-describedby="updatetitleHelp"
+                placeholder="Name of Product"
+              />
+              <small id="updatetitleHelp" class="form-text text-muted"
+                >Enter name of product</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="body">Body</label>
+              <input
+                type="text"
+                class="form-control"
+                name="updateprice"
+                id="updateprice"
+                aria-describedby="updatepriceHelp"
+                placeholder="Price Details"
+              />
+              <small id="updatepriceHelp" class="form-text text-muted"
+                >Enter price</small
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="updatecolor"
+                id="updatecolor"
+                aria-describedby="updatecolorHelp"
+                placeholder="Color Details"
+              />
+              <small id="updatecolorHelp" class="form-text text-muted"
+                >Enter Color</small
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="updatedep"
+                id="updatedep"
+                aria-describedby="updatedepHelp"
+                placeholder="department Details"
+              />
+              <small id="updatedepHelp" class="form-text text-muted"
+                >Enter department</small
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="updatedesc"
+                id="updatedesc"
+                aria-describedby="updatedescHelp"
+                placeholder="Description Details"
+              />
+              <small id="updatedescHelp" class="form-text text-muted"
+                >Enter Description</small
+              >
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="updateSave" class="btn btn-primary">Update</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+.indigo {
+  background-color: #003472;
+}
+
+#leftContent {
+  font-size: 13px;
+}
+
+#right-content #social-icons .icon-container {
+  width: 25px;
+  height: 25px;
+  background-color: #03bef1;
+}
+
+.about-background {
+  background-image: url("../images/top_background.webp");
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.about-background-inner-container {
+  background-color: rgba(0, 0, 0, 0.39);
+}
+
+.about-footer {
+  background-color: rgba(255, 255, 255, 0.671);
+}
