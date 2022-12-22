@@ -7,15 +7,33 @@ import {
 } from "../../stores/menu/productsSlice";
 import ProductDetailCard from "../../components/ProductDetailCard";
 import Tabs from "../../components/Tabs";
+import { addToCart } from "../../stores/cart/cartSlice";
 
 const Menu = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
   const [activeTab, setActiveTab] = useState("");
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
+
+  const onAddProduct = (product) => {
+    dispatch(addToCart(product));
+  };
+
+  const onTabSwitch = (newActiveTab) => {
+    setActiveTab(newActiveTab);
+    let categories = products.products.map((product) => product.name.name);
+    let index = categories.findIndex((category) => newActiveTab === category);
+
+    if (index > -1) {
+      setActiveTabIndex(index);
+    } else {
+      setActiveTabIndex(0);
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -28,15 +46,23 @@ const Menu = () => {
               <Tabs
                 list={products.products.map((product) => product.name.name)}
                 activeTab={activeTab}
-                onTabSwitch={setActiveTab}
+                onTabSwitch={onTabSwitch}
               />
             )}
           </div>
           <div className="flex flex-row mx-3">
             {products.products &&
-              products.products[0].products.map((product, index) => {
-                return <ProductDetailCard key={index} product={product} />;
-              })}
+              products.products[activeTabIndex].products.map(
+                (product, index) => {
+                  return (
+                    <ProductDetailCard
+                      key={index}
+                      product={product}
+                      onAddProduct={onAddProduct}
+                    />
+                  );
+                }
+              )}
           </div>
         </div>
       )}
