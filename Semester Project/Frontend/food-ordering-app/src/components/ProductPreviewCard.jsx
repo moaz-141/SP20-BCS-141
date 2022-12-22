@@ -3,7 +3,7 @@ import AddProduct from "./AddProduct";
 
 const ProductPreviewCard = ({ product, onAddProduct }) => {
   const addProduct = () => {
-    // TODO: create after setting up redux state for cart to add products there
+    onAddProduct(product);
   };
 
   return (
