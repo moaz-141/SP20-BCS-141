@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import foody from "../../src/assets/images/foody.png";
 import cartIcon from "../../src/assets/icons/cart.svg";
 
-const Header = () => {
+const Header = ({ cartCount }) => {
   return (
     <nav id="header" className="bg-black text-white">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
@@ -25,8 +25,13 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex items-center justify-center space-x-4">
-          <Link to="/cart">
+          <Link to="/cart" className="mr-4 relative">
             <img src={cartIcon} alt="cart" />
+            {cartCount > 0 ? (
+              <div className="rounded-full bg-yellow-400 text-white inline-flex justify-center items-center w-full absolute -top-1 -right-1">
+                {cartCount}
+              </div>
+            ) : null}
           </Link>
           <Link to="/login">Log In</Link>
           <Link to="/register">Sign Up</Link>
