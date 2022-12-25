@@ -3,6 +3,9 @@ import React from "react";
 import Button from "./elements/Button";
 
 const ProductDetailCard = ({ product, onAddProduct }) => {
+  const addProduct = () => {
+    onAddProduct(product);
+  };
   return (
     <div className="p-4 m-4 rounded-lg bg-slate-50">
       <div className="flex flex-col items-center justify-between">
@@ -20,7 +23,7 @@ const ProductDetailCard = ({ product, onAddProduct }) => {
         />
       </div>
       <div className="w-full flex items-center justify-center">
-        <Button onClick={onAddProduct}>Add to Cart</Button>
+        <Button onClick={addProduct}>Add to Cart</Button>
       </div>
     </div>
   );

@@ -9,31 +9,56 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      return {
-        products: [...state.products, { ...action.payload, amount: 1 }],
-      };
+      console.log("action.payload", action.payload);
+      console.log("state.products", state.products);
+      if (
+        state.products.find((product) => product._id === action.payload._id)
+      ) {
+        return {
+          products: state.products.map((product) =>
+            product._id === action.payload._id
+              ? { ...product, amount: product.amount + 1 }
+              : product
+          ),
+        };
+      } else {
+        return {
+          products: [...state.products, { ...action.payload, amount: 1 }],
+        };
+      }
     },
     clearCart: (state) => {
       return { products: [] };
     },
     incrementProductAmount: (state, action) => {
-      console.log("increment");
       return {
         products: state.products.map((product) =>
-          product.id === action.payload.id
+          product._id === action.payload._id
             ? { ...product, amount: product.amount + 1 }
             : product
         ),
       };
     },
     decrementProductAmount: (state, action) => {
-      return {
-        products: state.products.map((product) =>
-          product.id === action.payload.id
-            ? { ...product, amount: product.amount - 1 }
-            : product
-        ),
-      };
+      if (
+        state.products.find((product) => product._id === action.payload._id)
+          .amount === 1
+      ) {
+        return {
+          products: state.products.filter(
+            (product) => product._id !== action.payload._id
+          ),
+        };
+        // console.log("remove product", action.payload.name);
+      } else {
+        return {
+          products: state.products.map((product) =>
+            product._id === action.payload._id
+              ? { ...product, amount: product.amount - 1 }
+              : product
+          ),
+        };
+      }
     },
   },
 });

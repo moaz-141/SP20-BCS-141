@@ -42,7 +42,7 @@ const Cart = () => {
         <AddressForm onTabSwitch={handleTabSwitch} />
       </div>
       <div className={`tabs ${currentTab !== "Payment" ? "hidden" : ""}`}>
-        {/* <StripeWrapper /> */}
+        Payment Gateway to be added
       </div>
     </div>
   );

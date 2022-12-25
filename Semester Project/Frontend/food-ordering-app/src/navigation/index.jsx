@@ -9,6 +9,7 @@ import Menu from "../pages/Menu";
 import Cart from "../pages/Cart";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import Register from "../pages/Register";
+import Footer from "../components/Footer";
 import { cartProducts } from "../stores/cart/cartSlice";
 
 const Navigation = () => {
@@ -25,6 +26,7 @@ const Navigation = () => {
         <Route path="/payment-success" element={<PaymentSuccess />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
