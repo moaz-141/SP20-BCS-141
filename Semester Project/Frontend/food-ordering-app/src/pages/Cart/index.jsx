@@ -38,7 +38,7 @@ const Cart = () => {
         </div>
       </div>
       <div className={`tabs ${currentTab !== "Delivery" ? "hidden" : ""}`}>
-        {/* <AddressForm onTabSwitch={handleTabSwitch}/> */}
+        <AddressForm onTabSwitch={handleTabSwitch}/>
       </div>
       <div className={`tabs ${currentTab !== "Payment" ? "hidden" : ""}`}>
         {/* <StripeWrapper /> */}
