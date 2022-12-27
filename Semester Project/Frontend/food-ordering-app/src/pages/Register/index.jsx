@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 import Button from "../../components/elements/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { app } from "../../firebase-config";
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Register = () => {
   let navigate = useNavigate();
@@ -42,8 +40,17 @@ const Register = () => {
           });
           navigate("/");
         } else {
-          console.log(response.json());
-          navigate("/login");
+          setLoading(false);
+          toast.error("Some Error While Creating Account ⚠️", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         }
       })
       .catch((error) => {
