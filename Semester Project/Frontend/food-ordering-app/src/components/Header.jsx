@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import foody from "../../src/assets/images/foody.png";
 import cartIcon from "../../src/assets/icons/cart.svg";
+import { getUser } from "../../src/stores/auth/authSlice";
 
 const Header = ({ cartCount }) => {
+  const user = useSelector(getUser);
+  console.log("Here: ",user);
   return (
     <nav id="header" className="bg-black text-white">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">

@@ -9,8 +9,6 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      console.log("action.payload", action.payload);
-      console.log("state.products", state.products);
       if (
         state.products.find((product) => product._id === action.payload._id)
       ) {
@@ -49,7 +47,6 @@ export const cartSlice = createSlice({
             (product) => product._id !== action.payload._id
           ),
         };
-        // console.log("remove product", action.payload.name);
       } else {
         return {
           products: state.products.map((product) =>

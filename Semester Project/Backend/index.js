@@ -15,6 +15,8 @@ const sessionMiddleware = require("./middlewares/sessionMiddleware");
 
 var corsOptions = {
   origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+  credentials: true,
 };
 
 app.use(cors(corsOptions));

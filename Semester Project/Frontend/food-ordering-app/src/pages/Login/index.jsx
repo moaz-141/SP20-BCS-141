@@ -13,9 +13,6 @@ const Login = () => {
 
   const onSubmit = (data) => {
     setLoading(true);
-    // const authentication = getAuth();
-    // let uid = '';
-    // signInWithEmailAndPassword(authentication, data.email, data.password)
     fetch("http://localhost:8080/api/login", {
       method: "POST",
       headers: {
@@ -23,7 +20,6 @@ const Login = () => {
       },
       body: JSON.stringify({
         username: data.username,
-        // email: data.email,
         password: data.password,
       }),
     })

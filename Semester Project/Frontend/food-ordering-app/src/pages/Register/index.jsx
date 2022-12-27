@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 
 import Button from "../../components/elements/Button";
+import { setUser } from "../../stores/auth/authSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -10,12 +13,14 @@ const Register = () => {
   let navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
     setLoading(true);
 
     fetch("http://localhost:8080/api/create-user", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -27,7 +32,6 @@ const Register = () => {
     })
       .then((response) => {
         if (response.status === 200) {
-          setLoading(false);
           toast.success("Account created successfully!🎉", {
             position: "top-right",
             autoClose: 5000,
@@ -38,9 +42,10 @@ const Register = () => {
             progress: undefined,
             theme: "dark",
           });
-          navigate("/");
+          // navigate("/");
+          dispatch(setUser(Cookies.get()));
+          console.log("cookie", Cookies.get());
         } else {
-          setLoading(false);
           toast.error("Some Error While Creating Account ⚠️", {
             position: "top-right",
             autoClose: 5000,
@@ -54,8 +59,10 @@ const Register = () => {
         }
       })
       .catch((error) => {
+        console.log("Some error: ", error);
+      })
+      .finally(() => {
         setLoading(false);
-        console.log(error);
       });
   };
 
