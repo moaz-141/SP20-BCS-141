@@ -1,3 +1,4 @@
+//  will not be required when use jwt token
 const session = require("express-session");
 
 const sessionMiddleware = () =>

@@ -5,10 +5,10 @@ import { useSelector } from "react-redux";
 import foody from "../../src/assets/images/foody.png";
 import cartIcon from "../../src/assets/icons/cart.svg";
 import { getUser } from "../../src/stores/auth/authSlice";
+import userIcon from "../assets/images/user-icon.png";
 
 const Header = ({ cartCount }) => {
   const user = useSelector(getUser);
-  console.log("Here: ",user);
   return (
     <nav id="header" className="bg-black text-white">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
@@ -37,8 +37,20 @@ const Header = ({ cartCount }) => {
               </div>
             ) : null}
           </Link>
-          <Link to="/login">Log In</Link>
-          <Link to="/register">Sign Up</Link>
+          {user.cookie ? (
+            <Link
+              to="/profile"
+              className="text-xl text-white flex justify-center items-center"
+            >
+              {user.username}
+              <img src={userIcon} alt={user.username} className="w-8 m-2" />
+            </Link>
+          ) : (
+            <div className="flex items-center justify-center space-x-4">
+              <Link to="/login">Log In</Link>
+              <Link to="/register">Sign Up</Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>

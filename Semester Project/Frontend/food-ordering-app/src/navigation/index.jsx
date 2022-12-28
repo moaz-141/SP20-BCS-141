@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import Menu from "../pages/Menu";
 import Cart from "../pages/Cart";
 import PaymentSuccess from "../pages/PaymentSuccess";
+import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import Footer from "../components/Footer";
 import { cartProducts } from "../stores/cart/cartSlice";
@@ -24,6 +25,7 @@ const Navigation = () => {
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />
