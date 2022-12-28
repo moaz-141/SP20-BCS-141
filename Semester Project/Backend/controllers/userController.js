@@ -80,7 +80,6 @@ const forgotPassword = catchAsyncError(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // Create reset password url
-
   const resetUrl = `${req.protocol}://${req.get(
     "host"
   )}/api/password/reset/${resetToken}`;

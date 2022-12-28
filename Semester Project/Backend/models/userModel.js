@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 const userSchema = mongoose.Schema(
   {
