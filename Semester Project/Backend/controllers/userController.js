@@ -1,7 +1,9 @@
 const passport = require("passport");
+const crypto = require("crypto");
 
 const catchAsyncError = require("../middlewares/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken");
+const sendEmail = require("../utils/sendEmail");
 const User = require("../models/userModel");
 
 passport.use(User.createStrategy());
@@ -87,6 +89,7 @@ const forgotPassword = catchAsyncError(async (req, res, next) => {
   const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
 
   try {
+    // console.log("object")
     await sendEmail({
       email: user.email,
       subject: "Food Order Password Recovery",
@@ -107,4 +110,36 @@ const forgotPassword = catchAsyncError(async (req, res, next) => {
   }
 });
 
-module.exports = { register, login, logout, forgotPassword };
+const resetPassword = catchAsyncError(async (req, res, next) => {
+  // Hash URL token
+  const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex");
+
+  const user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    res
+      .status(400)
+      .send({ error: "Password reset token is invalid or has expired" });
+  }
+
+  if (req.body.password !== req.body.confirmPassword) {
+    res.status(400).send({ error: "Password does not match" });
+  }
+
+  // Setup new password
+  user.password = req.body.password;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+
+  await user.save();
+
+  sendToken(user, 200, res);
+});
+
+module.exports = { register, login, logout, forgotPassword, resetPassword };
