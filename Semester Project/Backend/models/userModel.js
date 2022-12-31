@@ -27,16 +27,18 @@ const userSchema = mongoose.Schema(
         type: String,
         default: "user",
       },
-      resetPasswordToken: String,
-      resetPasswordExpire: Date,
+    },
+    resetPasswordToken: {
+      type: String,
+    },
+    resetPasswordExpire: {
+      type: Date,
     },
   },
   {
     timestamps: true,
   }
 );
-
-userSchema.plugin(passportLocalMongoose);
 
 // JWT TOKEN
 userSchema.methods.getJWTToken = function () {
@@ -45,20 +47,23 @@ userSchema.methods.getJWTToken = function () {
   });
 };
 
+// Password reset token
 userSchema.methods.getResetPasswordToken = function () {
-  // Generate token
   const resetToken = crypto.randomBytes(20).toString("hex");
 
-  // Hash and set to resetPasswordToken field
-  this.passwordResetToken = crypto
+  this.resetPasswordToken = crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
 
-  // Set token expire time
-  this.passwordResetExpire = Date.now() + 15 * 60 * 1000;
+  this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
+
+  console.log(this.resetPasswordToken, this.resetPasswordExpire);
+  console.log(this);
 
   return resetToken;
 };
+
+userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", userSchema);

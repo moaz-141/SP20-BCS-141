@@ -76,8 +76,7 @@ const forgotPassword = catchAsyncError(async (req, res, next) => {
     res.status(404).send({ error: "User not found with this email" });
   }
 
-  // Get reset token
-  const resetToken = user.getResetPasswordToken();
+  const resetToken = await user.getResetPasswordToken();
 
   await user.save({ validateBeforeSave: false });
 
@@ -89,7 +88,6 @@ const forgotPassword = catchAsyncError(async (req, res, next) => {
   const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
 
   try {
-    // console.log("object")
     await sendEmail({
       email: user.email,
       subject: "Food Order Password Recovery",
@@ -111,7 +109,6 @@ const forgotPassword = catchAsyncError(async (req, res, next) => {
 });
 
 const resetPassword = catchAsyncError(async (req, res, next) => {
-  // Hash URL token
   const resetPasswordToken = crypto
     .createHash("sha256")
     .update(req.params.token)
@@ -132,7 +129,6 @@ const resetPassword = catchAsyncError(async (req, res, next) => {
     res.status(400).send({ error: "Password does not match" });
   }
 
-  // Setup new password
   user.password = req.body.password;
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
