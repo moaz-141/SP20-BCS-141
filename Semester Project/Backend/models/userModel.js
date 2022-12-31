@@ -3,7 +3,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,

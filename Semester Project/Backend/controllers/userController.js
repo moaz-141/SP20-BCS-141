@@ -45,19 +45,22 @@ const register = catchAsyncError(async (req, res, next) => {
 });
 
 const login = catchAsyncError(async (req, res, next) => {
-  const user = new User({
+  const user = await User.findOne({
     username: req.body.username,
-    password: req.body.password,
   });
-  req.login(user, { session: false }, (err) => {
-    if (err) {
-      res.status(400).send({ error: err });
-    } else {
-      passport.authenticate("local")(req, res, function () {
-        sendToken(user, 200, res);
-      });
+  req.login(
+    { user, password: req.body.password },
+    { session: false },
+    (err) => {
+      if (err) {
+        res.status(400).send({ error: err });
+      } else {
+        passport.authenticate("local")(req, res, function () {
+          sendToken(user, 200, res);
+        });
+      }
     }
-  });
+  );
 });
 
 const logout = catchAsyncError(async (req, res, next) => {
@@ -140,6 +143,7 @@ const resetPassword = catchAsyncError(async (req, res, next) => {
 });
 
 const getUserDetails = catchAsyncError(async (req, res, next) => {
+  // console.log(req);
   const user = await User.findById(req.user.id);
 
   res.status(200).send({
@@ -149,9 +153,9 @@ const getUserDetails = catchAsyncError(async (req, res, next) => {
 });
 
 const updatePassword = catchAsyncError(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select("+password");
+  const user = await User.findById(req.user.id);
 
-  const isMatched = await user.comparePassword(req.body.oldPassword);
+  const isMatched = await user.authenticate(req.body.oldPassword);
 
   if (!isMatched) {
     res.status(400).send({ error: "Old password is incorrect" });
@@ -161,11 +165,12 @@ const updatePassword = catchAsyncError(async (req, res, next) => {
     res.status(400).send({ error: "Password does not match" });
   }
 
-  user.password = req.body.newPassword;
+  console.log(isMatched);
+  // user.password = req.body.newPassword;
 
-  await user.save();
+  // await user.save();
 
-  sendToken(user, 200, res);
+  // sendToken(user, 200, res);
 });
 
 module.exports = {
