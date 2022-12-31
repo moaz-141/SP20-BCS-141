@@ -143,7 +143,6 @@ const resetPassword = catchAsyncError(async (req, res, next) => {
 });
 
 const getUserDetails = catchAsyncError(async (req, res, next) => {
-  // console.log(req);
   const user = await User.findById(req.user.id);
 
   res.status(200).send({
@@ -165,12 +164,11 @@ const updatePassword = catchAsyncError(async (req, res, next) => {
     res.status(400).send({ error: "Password does not match" });
   }
 
-  console.log(isMatched);
-  // user.password = req.body.newPassword;
+  await user.setPassword(req.body.newPassword);
 
-  // await user.save();
+  await user.save();
 
-  // sendToken(user, 200, res);
+  sendToken(user, 200, res);
 });
 
 module.exports = {
