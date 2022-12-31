@@ -129,7 +129,8 @@ const resetPassword = catchAsyncError(async (req, res, next) => {
     res.status(400).send({ error: "Password does not match" });
   }
 
-  user.password = req.body.password;
+  await user.setPassword(req.body.password);
+
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
 
@@ -138,4 +139,41 @@ const resetPassword = catchAsyncError(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-module.exports = { register, login, logout, forgotPassword, resetPassword };
+const getUserDetails = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  res.status(200).send({
+    success: true,
+    user,
+  });
+});
+
+const updatePassword = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select("+password");
+
+  const isMatched = await user.comparePassword(req.body.oldPassword);
+
+  if (!isMatched) {
+    res.status(400).send({ error: "Old password is incorrect" });
+  }
+
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    res.status(400).send({ error: "Password does not match" });
+  }
+
+  user.password = req.body.newPassword;
+
+  await user.save();
+
+  sendToken(user, 200, res);
+});
+
+module.exports = {
+  register,
+  login,
+  logout,
+  forgotPassword,
+  resetPassword,
+  getUserDetails,
+  updatePassword,
+};
