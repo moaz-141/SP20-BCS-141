@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
+
 import Cookies from "js-cookie"; // session-express using
 // import axios from "axios";
 
 import Button from "../../components/elements/Button";
 import { setUser } from "../../stores/auth/authSlice";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { registerUser } from "../../services/authServices";
 
 const Register = () => {
   let navigate = useNavigate();
@@ -17,96 +18,44 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
+  const fail = () => {
+    toast.error(`Some Error Occured.⚠️ Try changing Username or Email`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const success = (response) => {
+    dispatch(setUser(response.data));
+    if (response.status === 200) {
+      toast.success("Registered Successfully!🎉", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      // navigate("/");
+    } else {
+      fail();
+    }
+  };
+
   const onSubmit = (data) => {
     setLoading(true);
 
-    // axios
-    //   .post("http://localhost:8080/api/create-user", {
-    //     username: data.username,
-    //     email: data.email,
-    //     password: data.password,
-    //   })
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       toast.success("Account created successfully!🎉", {
-    //         position: "top-right",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: true,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "dark",
-    //       });
-
-    //       dispatch(setUser({ cookie: Cookies.get(), username: data.username }));
-    //       // navigate("/");
-    //     } else {
-    //       toast.error("Some Error While Creating Account ⚠️", {
-    //         position: "top-right",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: true,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "dark",
-    //       });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log("Some error: ", error);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
-
-    fetch("http://localhost:8080/api/register", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: data.username,
-        email: data.email,
-        password: data.password,
-      }),
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          toast.success("Account created successfully!🎉", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-          // dispatch(setUser({ cookie: Cookies.get(), username: data.username }));
-          // console.log(response.data.user);
-          // navigate("/");
-        } else {
-          toast.error("Some Error While Creating Account ⚠️", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-        }
-      })
-      .catch((error) => {
-        console.log("Some error: ", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    registerUser(data, success, fail, () => {
+      setLoading(false);
+    });
   };
 
   return (

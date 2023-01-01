@@ -1,13 +1,15 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+  isAuthenticated: false,
+};
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
     setUser: (state, action) => {
-      return { ...action.payload };
+      return { ...state, isAuthenticated: true, user: action.payload };
     },
   },
 });

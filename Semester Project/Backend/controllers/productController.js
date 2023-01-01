@@ -17,7 +17,7 @@ const getProductsByCategories = catchAsyncError(async (req, res, next) => {
     },
     { $project: { name: "$_id", products: 1, _id: 0 } },
   ]);
-  
+  return res.status(200).send({ data: products });
 });
 
 module.exports = { getProducts, getProductsByCategories };

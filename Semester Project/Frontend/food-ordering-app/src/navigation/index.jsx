@@ -11,6 +11,7 @@ import PaymentSuccess from "../pages/PaymentSuccess";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import Footer from "../components/Footer";
+import ForgetPassword from "../pages/ForgetPassword";
 import { cartProducts } from "../stores/cart/cartSlice";
 
 const Navigation = () => {
@@ -21,6 +22,7 @@ const Navigation = () => {
       <Header cartCount={cartItems ? cartItems.length : 0} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/password/forget" element={<ForgetPassword />} />
         <Route path="/login" element={<Login />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />

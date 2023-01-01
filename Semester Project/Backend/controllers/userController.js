@@ -153,7 +153,6 @@ const getUserDetails = catchAsyncError(async (req, res, next) => {
 
 const updatePassword = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user.id);
-
   const isMatched = await user.authenticate(req.body.oldPassword);
 
   if (!isMatched) {
@@ -165,10 +164,25 @@ const updatePassword = catchAsyncError(async (req, res, next) => {
   }
 
   await user.setPassword(req.body.newPassword);
-
   await user.save();
-
   sendToken(user, 200, res);
+});
+
+const updateProfile = catchAsyncError(async (req, res, next) => {
+  const newUserData = {
+    username: req.body.username,
+    email: req.body.email,
+  };
+
+  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).send({
+    success: true,
+  });
 });
 
 module.exports = {
@@ -179,4 +193,5 @@ module.exports = {
   resetPassword,
   getUserDetails,
   updatePassword,
+  updateProfile,
 };

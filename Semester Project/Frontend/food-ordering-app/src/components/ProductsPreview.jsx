@@ -30,7 +30,7 @@ const ProductsPreview = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/products")
+    fetch("/api/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.data);
@@ -47,9 +47,8 @@ const ProductsPreview = () => {
       <Carousel responsive={responsive}>
         {products.length > 0 &&
           products.map((product, index) => (
-            <div className="w-full p-3">
+            <div className="w-full p-3" key={index}>
               <ProductPreviewCard
-                key={index}
                 product={product}
                 onAddProduct={onAddProduct}
               />
