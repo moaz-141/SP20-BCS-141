@@ -36,7 +36,6 @@ const ChangePassword = () => {
   };
 
   const success = (response) => {
-    // dispatch(setUser(response.data));
     if (response.status === 200) {
       toast.success("Successful Password Change!🎉", {
         position: "top-right",
@@ -48,6 +47,7 @@ const ChangePassword = () => {
         progress: undefined,
         theme: "dark",
       });
+      navigate("/");
     } else {
       fail();
     }

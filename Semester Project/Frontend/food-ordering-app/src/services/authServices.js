@@ -48,7 +48,7 @@ export const updateUser = (user, thenBody, catchBody, finallyBody) => {
 export const changePassword = (data, thenBody, catchBody, finallyBody) => {
   axios({
     method: "put",
-    url: "/api/me/update",
+    url: "/api/password/update",
     data: data,
     withCredentials: true,
     headers: {
