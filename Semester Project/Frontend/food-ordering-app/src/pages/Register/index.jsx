@@ -1,25 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
-
-import Cookies from "js-cookie"; // session-express using
-// import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 import Button from "../../components/elements/Button";
-import { setUser } from "../../stores/auth/authSlice";
+import { getUser, setUser } from "../../stores/auth/authSlice";
 import { registerUser } from "../../services/authServices";
 
 const Register = () => {
   let navigate = useNavigate();
+  const user = useSelector(getUser);
   const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (user.isAuthenticated) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   const fail = () => {
-    toast.error(`Some Error Occured.⚠️ Try changing Username or Email`, {
+    toast.error("Invalid Username or Password⚠️", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -34,7 +38,7 @@ const Register = () => {
   const success = (response) => {
     dispatch(setUser(response.data));
     if (response.status === 200) {
-      toast.success("Registered Successfully!🎉", {
+      toast.success("Successful Login!🎉", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -44,7 +48,6 @@ const Register = () => {
         progress: undefined,
         theme: "dark",
       });
-      // navigate("/");
     } else {
       fail();
     }
@@ -52,7 +55,6 @@ const Register = () => {
 
   const onSubmit = (data) => {
     setLoading(true);
-
     registerUser(data, success, fail, () => {
       setLoading(false);
     });
@@ -63,8 +65,11 @@ const Register = () => {
       <div className="rounded-lg max-w-md w-full flex flex-col items-center justify-center relative">
         <div className="absolute inset-0 transition duration-300 animate-pink blur  gradient bg-gradient-to-tr from-rose-500 to-yellow-500"></div>
         <div className="p-10 rounded-xl z-10 w-full h-full bg-black">
-          <h5 className="text-3xl">Register</h5>
-          <form className="w-full space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <h5 className="text-center mb-8 text-3xl text-white">Register</h5>
+          <form
+            className="w-full space-y-6"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div>
               <label
                 htmlFor="username"

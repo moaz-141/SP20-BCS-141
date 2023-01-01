@@ -11,11 +11,14 @@ export const authSlice = createSlice({
     setUser: (state, action) => {
       return { ...state, isAuthenticated: true, user: action.payload };
     },
+    clearUser: () => {
+      return initialState;
+    },
   },
 });
 
 export const getUser = (state) => state.user;
 
-export const { setUser } = authSlice.actions;
+export const { setUser, clearUser } = authSlice.actions;
 
 export default authSlice.reducer;

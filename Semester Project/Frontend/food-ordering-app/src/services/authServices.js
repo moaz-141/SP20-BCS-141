@@ -30,11 +30,55 @@ export const loginUser = (user, thenBody, catchBody, finallyBody) => {
     .finally(finallyBody);
 };
 
+export const updateUser = (user, thenBody, catchBody, finallyBody) => {
+  axios({
+    method: "put",
+    url: "/api/me/update",
+    data: user,
+    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(thenBody)
+    .catch(catchBody)
+    .finally(finallyBody);
+};
+
+export const changePassword = (data, thenBody, catchBody, finallyBody) => {
+  axios({
+    method: "put",
+    url: "/api/me/update",
+    data: data,
+    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(thenBody)
+    .catch(catchBody)
+    .finally(finallyBody);
+};
+
 export const forgotPassword = (user, thenBody, catchBody, finallyBody) => {
   axios({
     method: "post",
     url: "/api/password/forgot",
     data: user,
+    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(thenBody)
+    .catch(catchBody)
+    .finally(finallyBody);
+};
+
+export const logoutUser = (thenBody, catchBody, finallyBody) => {
+  axios({
+    method: "get",
+    url: "/api/logout",
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",

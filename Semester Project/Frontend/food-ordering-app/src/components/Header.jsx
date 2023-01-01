@@ -1,25 +1,25 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import foody from "../../src/assets/images/foody.png";
 import cartIcon from "../../src/assets/icons/cart.svg";
-import { getUser, setUser } from "../../src/stores/auth/authSlice";
+import { getUser, setUser, clearUser } from "../../src/stores/auth/authSlice";
 import { loadUser } from "../services/authServices";
-import userIcon from "../assets/images/user-icon.png";
 
 const Header = ({ cartCount }) => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  let navigate = useNavigate();
 
   useEffect(() => {
     loadUser(
       (response) => {
         dispatch(setUser(response.data));
       },
-      () => {
-        navigate("/login");
+      (err) => {
+        if (err.response.status === 400) {
+          dispatch(clearUser());
+        }
       }
     );
   });
@@ -58,7 +58,11 @@ const Header = ({ cartCount }) => {
               className="text-xl text-white flex justify-center items-center"
             >
               {user.user.user.username}
-              <img src={userIcon} alt={user.username} className="w-8 m-2" />
+              <img
+                src={user.user.user.avatar.url}
+                alt={user.user.user.username}
+                className="w-8 m-2"
+              />
             </Link>
           ) : (
             <div className="flex items-center justify-center space-x-4">

@@ -6,10 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 
 import Button from "../../components/elements/Button";
-import { loginUser } from "../../services/authServices";
 import { getUser, setUser } from "../../stores/auth/authSlice";
+import { changePassword } from "../../services/authServices";
 
-const Login = () => {
+const ChangePassword = () => {
   let navigate = useNavigate();
   const user = useSelector(getUser);
   const { register, handleSubmit } = useForm();
@@ -17,13 +17,13 @@ const Login = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.isAuthenticated) {
+    if (!user.isAuthenticated) {
       navigate("/");
     }
   }, [user, navigate]);
 
   const fail = () => {
-    toast.error("Invalid Username or Password⚠️", {
+    toast.error("Some Error Occured⚠️", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -36,9 +36,9 @@ const Login = () => {
   };
 
   const success = (response) => {
-    dispatch(setUser(response.data));
+    // dispatch(setUser(response.data));
     if (response.status === 200) {
-      toast.success("Successful Login!🎉", {
+      toast.success("Successful Password Change!🎉", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -55,69 +55,69 @@ const Login = () => {
 
   const onSubmit = (data) => {
     setLoading(true);
-    loginUser(data, success, fail, () => {
+    changePassword(data, success, fail, () => {
       setLoading(false);
     });
   };
 
   return (
-    <div className="h-screen bg-black flex items-center justify-center">
+    <div className="h-screen bg-black flex  items-center justify-center">
       <div className="rounded-lg max-w-md w-full flex flex-col items-center justify-center relative">
         <div className="absolute inset-0 transition duration-300 animate-pink blur  gradient bg-gradient-to-tr from-rose-500 to-yellow-500"></div>
         <div className="p-10 rounded-xl z-10 w-full h-full bg-black">
-          <h5 className="text-center mb-8 text-3xl text-white">Login</h5>
+          <h5 className="text-center mb-8 text-3xl text-white">
+            Change Password
+          </h5>
           <form className="w-full space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label
-                htmlFor="username"
+                htmlFor="oldPassword"
                 className="block text-lg font-medium text-gray-200"
               >
-                Username
+                Old Password
               </label>
               <input
-                {...register("username")}
-                id="username"
-                type="username"
-                placeholder="JohnDoe"
-                className="block appearance-none w-full px-3 py-2 border border-gray-300 roundedn-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-200 focus:border-gray-200"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-lg font-medium text-gray-200"
-              >
-                Password
-              </label>
-              <input
-                {...register("password")}
-                id="password"
+                {...register("oldPassword")}
+                id="oldPassword"
                 type="password"
                 placeholder="********"
                 className="block appearance-none w-full px-3 py-2 border border-gray-300 roundedn-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-200 focus:border-gray-200"
               />
             </div>
             <div>
-              <div
-                className="flex mb-2 justify-end text-md font-medium text-yellow-500 cursor-pointer"
-                onClick={() => navigate("/password/forget")}
+              <label
+                htmlFor="newPassword"
+                className="block text-lg font-medium text-gray-200"
               >
-                Forget Password ?
-              </div>
-              <Button size="large">{loading ? "loading" : "Login"}</Button>
+                New Password
+              </label>
+              <input
+                {...register("newPassword")}
+                id="newPassword"
+                type="password"
+                placeholder="********"
+                className="block appearance-none w-full px-3 py-2 border border-gray-300 roundedn-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-200 focus:border-gray-200"
+              />
             </div>
-          </form>
-          <div className="mt-6 flex justify-center">
-            <p className="block text-lg font-medium text-gray-200">
-              Don't have an account?{" "}
-              <span
-                className="text-lg font-medium text-yellow-500 cursor-pointer"
-                onClick={() => navigate("/register")}
+            <div>
+              <label
+                htmlFor="confirmPassword"
+                className="block text-lg font-medium text-gray-200"
               >
-                Register
-              </span>
-            </p>
-          </div>
+                Confirm Password
+              </label>
+              <input
+                {...register("confirmPassword")}
+                id="confirmPassword"
+                type="password"
+                placeholder="********"
+                className="block appearance-none w-full px-3 py-2 border border-gray-300 roundedn-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-200 focus:border-gray-200"
+              />
+            </div>
+            <Button size="large">
+              {loading ? "loading" : "Change Password"}
+            </Button>
+          </form>
           <ToastContainer />
         </div>
       </div>
@@ -125,4 +125,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ChangePassword;

@@ -28,7 +28,7 @@ const register = catchAsyncError(async (req, res, next) => {
       email: req.body.email,
       avatar: {
         public_id: "this is sample id",
-        url: "profilepicUrl",
+        url: "https://res.cloudinary.com/dlwq5rgeu/image/upload/v1672573314/food-ordering-app/user-icon_jxt1df.png",
       },
     },
     req.body.password,
