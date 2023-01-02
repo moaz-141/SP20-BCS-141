@@ -7,7 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Button from "../../components/elements/Button";
 import { updateUser } from "../../services/authServices";
-import { getUser, setUser, clearUser } from "../../stores/auth/authSlice";
+import { getUser, clearUser } from "../../stores/auth/authSlice";
+import cameraImage from "../../assets/images/camera.png";
 
 const UpdateProfile = () => {
   let navigate = useNavigate();
@@ -71,9 +72,32 @@ const UpdateProfile = () => {
               Update Profile
             </h5>
             <form
-              className="w-full space-y-6"
+              className="w-full space-y-6 flex justify-center flex-col"
               onSubmit={handleSubmit(onSubmit)}
             >
+              <div className="flex w-20 self-center relative">
+                <label htmlFor="image" className="block text-lg font-medium ">
+                  <div className="flex justify-center relative">
+                    <img
+                      src={user.user.user.avatar.url}
+                      alt={user.user.user.username}
+                      className="w-20 hover:cursor-pointer transition duration-300 ease-in-out transform hover:scale-150 hover:opacity-50"
+                    />
+                    <img
+                      src={cameraImage}
+                      alt="cameraIcon"
+                      className="w-20 absolute -z-20 hover:cursor-pointer"
+                    />
+                  </div>
+                </label>
+                <input
+                  {...register("image")}
+                  id="image"
+                  type="file"
+                  accept="image/*"
+                  className="absolute -z-10 w-20 opacity-0"
+                />
+              </div>
               <div>
                 <label
                   htmlFor="username"

@@ -20,7 +20,7 @@ const Profile = () => {
     if (!user.isAuthenticated) {
       navigate("/");
     }
-  }, [user, navigate]);
+  }, []);
 
   const fail = () => {
     toast.error("Invalid Username or Password⚠️", {
