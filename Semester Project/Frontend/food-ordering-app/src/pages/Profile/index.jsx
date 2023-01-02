@@ -84,7 +84,7 @@ const Profile = () => {
                 <img
                   src={user.user.user.avatar.url}
                   alt={user.user.user.username}
-                  className="w-20 hover:cursor-pointer transition duration-300 ease-in-out transform hover:scale-[2.5]"
+                  className="w-20 overflow-hidden rounded-full h-20 hover:cursor-pointer transition duration-300 ease-in-out transform hover:scale-[2.5]"
                 />
               </div>
               <div className="grid grid-cols-3">

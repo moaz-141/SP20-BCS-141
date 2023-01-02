@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -22,7 +22,7 @@ const Header = ({ cartCount }) => {
         }
       }
     );
-  });
+  }, []);
 
   return (
     <nav id="header" className="bg-black text-white">
@@ -61,7 +61,7 @@ const Header = ({ cartCount }) => {
               <img
                 src={user.user.user.avatar.url}
                 alt={user.user.user.username}
-                className="w-8 m-2"
+                className="w-8 h-8 rounded-full m-2"
               />
             </Link>
           ) : (

@@ -6,13 +6,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 
 import Button from "../../components/elements/Button";
-import { updateUser } from "../../services/authServices";
-import { getUser, clearUser } from "../../stores/auth/authSlice";
+import { updateUser, uploadImage, loadUser } from "../../services/authServices";
+import { getUser, setUser, clearUser } from "../../stores/auth/authSlice";
 import cameraImage from "../../assets/images/camera.png";
 
 const UpdateProfile = () => {
   let navigate = useNavigate();
   const user = useSelector(getUser);
+  const [userImageUrl, setUserImageUrl] = useState(
+    user.isAuthenticated && user.user.user.avatar.url
+  );
+  const [userImage, setUserImage] = useState();
   const { register, handleSubmit } = useForm();
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -38,6 +42,16 @@ const UpdateProfile = () => {
 
   const success = (response) => {
     dispatch(clearUser());
+    loadUser(
+      (response) => {
+        dispatch(setUser(response.data));
+      },
+      (err) => {
+        if (err.response.status === 400) {
+          dispatch(clearUser());
+        }
+      }
+    );
     if (response.status === 200) {
       toast.success("Update Successful🎉", {
         position: "top-right",
@@ -54,8 +68,33 @@ const UpdateProfile = () => {
     }
   };
 
+  const readyUploadImage = () => {
+    const data = new FormData();
+    data.append("file", userImage);
+    data.append("upload_preset", "food-ordering");
+    data.append("cloud_name", "dlwq5rgeu");
+    return data;
+  };
+
   const onSubmit = (data) => {
     setLoading(true);
+    if (userImage) {
+      const img = readyUploadImage();
+      uploadImage(
+        img,
+        (userdata) => {
+          data.avatar.public_id = userdata.public_id;
+          data.avatar.url = userdata.secure_url;
+        },
+        (err) => {
+          data.avatar = user.user.user.avatar;
+          console.log("object", err);
+          fail();
+        }
+      );
+    } else {
+      data.avatar = user.user.user.avatar;
+    }
     updateUser(data, success, fail, () => {
       setLoading(false);
     });
@@ -76,12 +115,12 @@ const UpdateProfile = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="flex w-20 self-center relative">
-                <label htmlFor="image" className="block text-lg font-medium ">
-                  <div className="flex justify-center relative">
+                <label htmlFor="avatar" className="block text-lg font-medium ">
+                  <div className="flex justify-center relative w-20 h-20">
                     <img
-                      src={user.user.user.avatar.url}
+                      src={userImageUrl}
                       alt={user.user.user.username}
-                      className="w-20 hover:cursor-pointer transition duration-300 ease-in-out transform hover:scale-150 hover:opacity-50"
+                      className="w-20 hover:cursor-pointer transition duration-300 ease-in-out transform hover:scale-150 hover:opacity-50 overflow-hidden rounded-full"
                     />
                     <img
                       src={cameraImage}
@@ -91,10 +130,14 @@ const UpdateProfile = () => {
                   </div>
                 </label>
                 <input
-                  {...register("image")}
-                  id="image"
+                  {...register("avatar")}
+                  id="avatar"
                   type="file"
                   accept="image/*"
+                  onChange={(e) => {
+                    setUserImageUrl(URL.createObjectURL(e.target.files[0]));
+                    setUserImage(e.target.files[0]);
+                  }}
                   className="absolute -z-10 w-20 opacity-0"
                 />
               </div>

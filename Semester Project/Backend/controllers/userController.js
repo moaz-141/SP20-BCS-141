@@ -172,6 +172,7 @@ const updateProfile = catchAsyncError(async (req, res, next) => {
   const newUserData = {
     username: req.body.username,
     email: req.body.email,
+    avatar: req.body.avatar,
   };
 
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {

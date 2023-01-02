@@ -30,6 +30,16 @@ export const loginUser = (user, thenBody, catchBody, finallyBody) => {
     .finally(finallyBody);
 };
 
+export const uploadImage = async (data, thenBody, catchBody) => {
+  await fetch("https://api.cloudinary.com/v1_1/dlwq5rgeu/image/upload", {
+    method: "post",
+    body: data,
+  })
+    .then((resp) => resp.json())
+    .then(thenBody)
+    .catch(catchBody);
+};
+
 export const updateUser = (user, thenBody, catchBody, finallyBody) => {
   axios({
     method: "put",

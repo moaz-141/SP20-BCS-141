@@ -15,6 +15,7 @@ import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import Update from "../pages/UpdateProfile";
 import { cartProducts } from "../stores/cart/cartSlice";
+import NotFound from "../pages/NotFound";
 
 const Navigation = () => {
   const cartItems = useSelector(cartProducts);
@@ -33,6 +34,7 @@ const Navigation = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/profile/update" element={<Update />} />
         <Route path="/password/change" element={<ChangePassword />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>
