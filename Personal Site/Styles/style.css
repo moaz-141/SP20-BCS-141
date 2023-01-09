@@ -1,0 +1,286 @@
+
+
+#div-nav-bar-top-1 {
+    height: 3rem;
+}
+
+#div-nav-bar-top-2 {
+    height: 3.5rem;
+    position: absolute;
+    margin-top: 0;
+}
+
+.color-1{
+    background-color: #D6E5FA;
+    color: #7c9ee4
+}
+
+.color-2 {
+    background-color: #fff;
+}
+
+.div-nav-bar{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding: 0 1rem;
+    background-color: transparent;
+}
+
+.nav-item {
+    padding: 0 0.5rem;
+}
+
+@media (max-width: 991px) {
+    .nav-item{
+        background-color: #D6E5FA;
+        border: 0.5px dashed rgb(171, 171, 231);
+    }
+}
+
+.nav-link {
+    font-family: "Montserrat";
+}
+
+.div-intro, .div-skills {
+    padding: 5.5rem 0 4rem;
+}
+
+.text-align-line-height {
+    text-align: center;
+    line-height: 2;
+}
+
+.class-cloud {
+    position: absolute;
+    width: 9rem;
+    opacity: 0.7;
+}
+
+.image-1 {
+    margin: -5.5rem 16.5rem;
+}
+
+@media (max-width: 832px) {
+    .image-1 {
+        margin: -8rem -15.5rem;
+    }
+}
+
+.image-2 {
+    margin: 4.5rem -35rem;
+}
+
+#name {
+    font-family: "Sacramento";
+    font-weight: bold;
+    font-size: 6rem;
+}
+
+.class-hill-image {
+    padding: 3rem 0 0;
+}
+
+
+.div-about {
+    padding: 5rem 25rem;
+}
+
+.moaz-image {
+    padding: 2rem 0;
+    border-radius: 100rem;
+    width: 10rem;
+}
+
+@media (max-width: 1049px) {
+    .div-about {
+      padding: 5rem 20rem;
+    }
+}
+
+@media (max-width: 881px) {
+    .div-about {
+      padding: 5rem 15rem;
+    }
+}
+
+@media (max-width: 725px) {
+    .div-about {
+      padding: 5rem 8rem;
+    }
+
+    .class-hill-image {
+        width: 15rem;
+    }
+}
+
+@media (max-width: 262px) {
+    .class-hill-image {
+        width: 10rem;
+    }
+
+    #name {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 499px) {
+    .div-about {
+      padding: 5rem 1rem;
+    }
+}
+
+#skills-heading {
+    padding: 2rem 0;
+}
+
+.font-color {
+    color: #344CB7;
+}
+
+.skill-image {
+    width: 10rem;
+    height: 10rem;
+    padding: 0.5rem;
+    border-radius: 100rem;
+}
+
+.developing-image, .database-image { 
+    margin: 1.2rem 0 0 5rem;
+}
+
+.database-image {
+    border-radius: 3rem;
+}
+
+
+@media (max-width: 1199px) {
+    .developing-image, .database-image {
+        margin: 1.2rem 0 0 0;
+    }
+}
+
+.row-1, .row-3 {
+    padding-right: 5rem;
+}
+
+.skill-content {
+    text-align: left;
+    padding: 1rem;
+}
+
+.row-2 {
+    padding: 4rem 0 0 4.5rem;
+    display: flex;
+}
+
+.programming-image {
+    margin: 1.2rem 10rem 0 0;
+}
+
+.row-3 {
+    padding-top: 4rem;
+}
+
+.div-projects {
+    padding: 0 10rem 3rem;
+}
+
+#projects-heading {
+    padding: 3rem 0 2rem;
+}
+
+.isp-content, .spyware-content {
+    background-color: #030303;
+    color: #fff; 
+}
+
+.slide-caption {
+    color: black;
+    text-decoration: none;
+    pointer-events: none;
+}
+
+@media (max-width: 767px) {
+    .slide-caption {
+        color: rgb(96, 96, 143);
+        text-decoration: underline;
+        pointer-events: auto;
+    }
+}
+
+.div-contact {
+    padding: 5rem 0 1rem;
+}
+
+.content-contact {
+    margin: 0 10rem;
+    padding: 0 5rem 2rem;
+}
+
+@media (max-width: 818px) { 
+    .content-contact {
+        margin: 0 0rem;
+    }
+}
+
+.mail-icon {
+    width: 2rem;
+}
+
+.mail-message {
+    padding-left: 0.5rem;
+}
+
+.contact-button {
+    margin: 0 0 3rem;
+}
+
+.mail-link {
+    text-decoration: none;
+    font-weight: 500;
+    color: #7c9ee4;
+}
+
+.social-icon {
+    padding: 0 0.5rem;
+}
+
+@media (max-width: 991px) {
+    .skill-content {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .row-1, .row-3 {
+        padding-right: 0;
+    }
+
+    .row-2 {
+        padding: 0;
+    }
+
+    .row-3 {
+        padding-top: 1rem;
+    }
+
+    .programming-image {
+        margin-right: 0;
+        order: 1;
+    }
+
+    .content-2 {
+        order: 2;
+        padding-top: 0;
+    }
+
+    .div-projects {
+        padding: 0 3rem 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .div-projects {
+        padding: 0 1rem 3rem;
+    }
+}

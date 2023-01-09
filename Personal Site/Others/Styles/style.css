@@ -1,0 +1,69 @@
+body {
+    background-color: #B1D0E0 !important;
+}
+
+.div-content {
+    padding-top: 6rem;
+    line-height: 2rem;
+}
+
+.text-center-align {
+    text-align: center;
+}
+
+.main-heading {
+    font-family: "Merriweather";
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.content-paragraph {
+    font-family: "Montserrat";
+    text-align: justify;
+    padding: 0 12rem;
+}
+
+.paragraph-1, .footer-content {
+    padding-top: 1rem;
+}
+
+.footer-content {
+    margin: 1.8rem 0 -0.7rem;
+    padding-bottom: 0.65rem;
+}
+
+.java-application-slides {
+    margin: 0 12rem 0;
+    padding: 4rem 8rem 3rem;
+}
+
+@media (max-width: 1170px) {
+    .content-paragraph {
+        padding: 0 6rem;
+    }
+
+    .java-application-slides {
+        margin: 0 10rem 0;
+        padding: 4rem 6rem 3rem;
+    }
+}
+
+@media (max-width: 920px) {
+    .java-application-slides {
+        margin: 0 8rem 0;
+        padding: 4rem 4rem 3rem;
+    }
+}
+
+@media (max-width: 815px) {
+    .content-paragraph {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 735px) {
+    .java-application-slides {
+        margin: 0 0rem 0;
+        padding: 4rem 5rem 3rem;
+    }
+}
