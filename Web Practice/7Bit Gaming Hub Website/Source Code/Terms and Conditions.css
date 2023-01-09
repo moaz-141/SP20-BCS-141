@@ -1,0 +1,9 @@
+body {color:white;background-image: url(https://img.wallpapersafari.com/desktop/1680/1050/2/56/NGmsB6.jpg);
+    width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; margin: 0%;}
+    #logo {width: 100%; height: 70px; background-color: transparent; position: relative; top: -10px; left: -10px;}
+    #logo img {width: 20.25%; height: 130px;}
+    h2 {color: rgb(202, 228, 228);text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif}
+    #agreementhead {color: rgb(202, 228, 228);text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+    #termshead {color: rgb(202, 228, 228);text-align: center;}
+    #date {color: rgb(202, 228, 228);text-align: center;}
+    #content {width: 96%; height: 100%; background-color: transparent; margin: 2%; text-align: justify;}

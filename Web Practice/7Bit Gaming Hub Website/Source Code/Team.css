@@ -1,0 +1,7 @@
+body {color: rgb(238, 214, 214) ;background-image: url(https://mcdn.wallpapersafari.com/medium/10/80/VP5eTn.jpg);
+    width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; margin: 0%;}
+    #logo {width: 100%; height: 76px; background-color: transparent; position: relative; top: -10px; left: -10px}
+    #logo img {width: 20.25%; height: 130px;}
+    img {width: 13%; height: 201px;}
+    h1 {text-align: center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif}
+    #content {width: 96%; height: 100%; background-color: transparent; margin: 2%; text-align: justify;}

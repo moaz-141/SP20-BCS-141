@@ -1,0 +1,11 @@
+body {background-image: url(https://image.freepik.com/free-photo/question-mark-written-by-hand-blackboard_47726-5228.jpg);
+    width: 100%;height: 100%; background-repeat: no-repeat; background-size: cover; position: relative; margin: 0%;}
+    #logo {width: 50%; height: 100px; background-color: transparent;float: left; position: relative; top: -10px; left: -10px;}
+    #logo img {width: 40%; height: 130px;}
+    #content {width: 50%; height: 400px; background-color: rgba(98, 121, 221, 0.288); position: relative; top: 130px; left: 10%;}
+    form {position: relative; top: -70px; left: 28.5%; line-height: 9px; font-size: 17px; color: rgb(223, 219, 12);}
+    #content input {width: 40%;}
+    #description {height: 65px; text-align: justify;}
+    h1 {color: rgba(255, 0, 0, 0.466);position: absolute; left: 62%; top: 180px;
+    font-family::Georgia, 'Times New Roman', Times, serif; font-size: 90px;}
+    #submit {background-color: transparent; cursor: pointer; height: 25px; color: whitesmoke; font-size: 15px;}
